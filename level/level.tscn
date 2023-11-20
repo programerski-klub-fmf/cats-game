@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://43wunqncjbf3" path="res://player/player.tscn" id="1_g8oc3"]
 
-[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_l7ta6"]
+[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_orkkf"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_chyec"]
 size = Vector2(16, 16)
@@ -11,16 +11,13 @@ size = Vector2(16, 16)
 
 [node name="Player" parent="." instance=ExtResource("1_g8oc3")]
 
-[node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.646057, 2.55048)
-
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.356868, 0.934155, 0, -0.934155, 0.356868, 0, 0, 0)
 
 [node name="Floor" type="StaticBody3D" parent="."]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Floor"]
-shape = SubResource("WorldBoundaryShape3D_l7ta6")
+shape = SubResource("WorldBoundaryShape3D_orkkf")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Floor"]
 mesh = SubResource("PlaneMesh_chyec")

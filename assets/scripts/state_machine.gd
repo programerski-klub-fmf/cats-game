@@ -46,8 +46,6 @@ func _change_state(state_name: String) -> void:
 	if state_name != "previous":
 		current_state.enter()
 
-	print(states_stack)
-
 func _input(event: InputEvent) -> void:
 	if current_state:
 		current_state.handle_input(event)
@@ -59,3 +57,4 @@ func _process(delta: float) -> void:
 func _physics_process(delta: float) -> void:
 	if current_state:
 		current_state.physics_update(delta)
+#	print(states_stack)

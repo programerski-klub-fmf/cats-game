@@ -39,5 +39,15 @@ script = ExtResource("4_2rq8h")
 [node name="Walk" type="Node" parent="PlayerStateMachine"]
 script = ExtResource("5_iqfve")
 
-[node name="PlayerState" type="Node" parent="PlayerStateMachine"]
+[node name="Run" type="Node" parent="PlayerStateMachine"]
 script = ExtResource("6_laxlk")
+
+[node name="HorizontalPivot" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.942163, 0.335156, 0, -0.335156, 0.942163, 0, 0.971309, -0.651512)
+
+[node name="VerticalPivot" type="Node3D" parent="HorizontalPivot"]
+
+[node name="SpringArm3D" type="SpringArm3D" parent="HorizontalPivot/VerticalPivot"]
+spring_length = 3.0
+
+[node name="Camera3D" type="Camera3D" parent="HorizontalPivot/VerticalPivot/SpringArm3D"]
