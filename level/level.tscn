@@ -1,11 +1,17 @@
-[gd_scene load_steps=4 format=3 uid="uid://d4e8vhuntu65f"]
+[gd_scene load_steps=6 format=3 uid="uid://d4e8vhuntu65f"]
 
 [ext_resource type="PackedScene" uid="uid://43wunqncjbf3" path="res://player/player.tscn" id="1_g8oc3"]
+[ext_resource type="Texture2D" uid="uid://f6ir0srllf1c" path="res://assets/textures/grass256x256.png" id="2_n0itb"]
 
 [sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_orkkf"]
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dfjva"]
+albedo_texture = ExtResource("2_n0itb")
+uv1_scale = Vector3(256, 256, 256)
+
 [sub_resource type="PlaneMesh" id="PlaneMesh_chyec"]
-size = Vector2(16, 16)
+material = SubResource("StandardMaterial3D_dfjva")
+size = Vector2(256, 256)
 
 [node name="Level" type="Node3D"]
 
