@@ -42,12 +42,13 @@ script = ExtResource("5_iqfve")
 [node name="Run" type="Node" parent="PlayerStateMachine"]
 script = ExtResource("6_laxlk")
 
-[node name="HorizontalPivot" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.942163, 0.335156, 0, -0.335156, 0.942163, 0, 0.971309, -0.651512)
+[node name="YawPivot" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, -1)
 
-[node name="VerticalPivot" type="Node3D" parent="HorizontalPivot"]
+[node name="PitchPivot" type="Node3D" parent="YawPivot"]
+transform = Transform3D(1, 0, 0, 0, 0.978148, 0.207912, 0, -0.207912, 0.978148, 0, 0, 0)
 
-[node name="SpringArm3D" type="SpringArm3D" parent="HorizontalPivot/VerticalPivot"]
-spring_length = 3.0
+[node name="SpringArm3D" type="SpringArm3D" parent="YawPivot/PitchPivot"]
+spring_length = 5.0
 
-[node name="Camera3D" type="Camera3D" parent="HorizontalPivot/VerticalPivot/SpringArm3D"]
+[node name="Camera3D" type="Camera3D" parent="YawPivot/PitchPivot/SpringArm3D"]

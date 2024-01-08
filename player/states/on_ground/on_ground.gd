@@ -13,16 +13,44 @@ func physics_update(_delta: float) -> void:
 	var input_dir = Input.get_vector("left", "right", "forwards", "backwards")
 
 	var direction = (
-		player.transform.basis * Vector3(input_dir.x, 0, input_dir.y)
-		).normalized()
+		player.transform.basis *
+		player.yaw_pivot.transform.basis *
+		Vector3(input_dir.x, 0, input_dir.y)
+	).normalized()
+	var target = player.transform.basis * player.yaw_pivot.basis
+	var rotation_amount = player.rotation_speed * _delta
+	player.transform.basis = player.transform.basis.slerp(
+		target,
+		rotation_amount
+	).orthonormalized()
+	player.yaw_pivot.basis = player.yaw_pivot.basis.slerp(
+		Basis(),
+		rotation_amount
+	).orthonormalized()
 	if direction:
-		player.velocity.x = direction.x * speed
-		player.velocity.z = direction.z * speed
+		player.velocity.x = move_toward(
+			player.velocity.x,
+			direction.x * speed,
+			player.acceleration * _delta
+		)
+		player.velocity.z = move_toward(
+			player.velocity.z,
+			direction.z * speed,
+			player.acceleration * _delta
+		)
 	else:
-		player.velocity.x = move_toward(player.velocity.x, 0, speed)
-		player.velocity.z = move_toward(player.velocity.z, 0, speed)
+		player.velocity.x = move_toward(
+			player.velocity.x,
+			0,
+			player.acceleration * _delta
+		)
+		player.velocity.z = move_toward(
+			player.velocity.z,
+			0,
+			player.acceleration * _delta
+		)
 
-	var collision = player.move_and_slide()
+	player.move_and_slide()
 
 	if not player.velocity:
 		emit_signal("demands_transition_to", "idle")

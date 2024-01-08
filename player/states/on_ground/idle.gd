@@ -9,8 +9,9 @@ func update(_delta: float) -> void:
 		or Input.is_action_pressed("forwards")
 		or Input.is_action_pressed("backwards")
 	)
+	var _is_moving: bool = player.velocity.x != 0 or player.velocity.z != 0
 
 	if _is_jump_input:
 		emit_signal("demands_transition_to", "jump")
-	elif _is_move_input:
+	elif _is_move_input or _is_moving:
 		emit_signal("demands_transition_to", "walk")

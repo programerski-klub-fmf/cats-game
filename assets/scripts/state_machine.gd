@@ -46,7 +46,7 @@ func _change_state(state_name: String) -> void:
 	if state_name != "previous":
 		current_state.enter()
 
-	print("\nChanged state to: ", state_name)
+# state has changed to current state
 
 func _input(event: InputEvent) -> void:
 	if current_state:
