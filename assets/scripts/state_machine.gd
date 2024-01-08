@@ -12,6 +12,8 @@ var interrupting_states: Array[String] = []
 var states_stack: Array[State] = []
 var current_state: State = null
 
+var active: bool = false
+
 
 func _ready() -> void:
 	await owner.ready
@@ -49,14 +51,13 @@ func _change_state(state_name: String) -> void:
 # state has changed to current state
 
 func _input(event: InputEvent) -> void:
-	if current_state:
+	if current_state and active:
 		current_state.handle_input(event)
 
 func _process(delta: float) -> void:
-	if current_state:
+	if current_state and active:
 		current_state.update(delta)
 
 func _physics_process(delta: float) -> void:
-	if current_state:
+	if current_state and active:
 		current_state.physics_update(delta)
-#	print(states_stack)

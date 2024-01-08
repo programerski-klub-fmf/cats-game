@@ -15,6 +15,7 @@ extends CharacterBody3D
 var yaw_input := 0.0
 var pitch_input := 0.0
 
+@onready var state_machine := $PlayerStateMachine
 @onready var yaw_pivot := $YawPivot
 @onready var pitch_pivot := $YawPivot/PitchPivot
 
@@ -22,28 +23,16 @@ var pitch_input := 0.0
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 
 func _ready() -> void:
-	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
-
-#func _input(event: InputEvent) -> void:
-#	if event is InputEventMouseMotion:
-#		yaw_pivot.rotate_y(
-#			deg_to_rad(-event.relative.x * yaw_speed)
-#			)
-#		pitch_pivot.rotate_x(
-#			deg_to_rad(-event.relative.y * pitch_speed)
-#		)
+	pass
 
 func _process(_delta: float) -> void:
-	if Input.is_action_just_pressed("ui_cancel"):
-		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
-
 	yaw_pivot.rotate_y(yaw_input)
 	pitch_pivot.rotate_x(pitch_input)
 	pitch_pivot.rotation.x = clamp(
 		pitch_pivot.rotation.x,
 		deg_to_rad(-60),
 		deg_to_rad(10)
-		)
+	)
 	yaw_input = 0.0
 	pitch_input = 0.0
 
