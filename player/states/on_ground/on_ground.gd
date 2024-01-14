@@ -18,7 +18,8 @@ func physics_update(_delta: float) -> void:
 		Vector3(input_dir.x, 0, input_dir.y)
 	).normalized()
 	var target = player.transform.basis * player.yaw_pivot.basis
-	var rotation_amount = player.rotation_speed * _delta
+	var velocity_modifier = player.velocity.length() / speed
+	var rotation_amount = player.rotation_speed * _delta * velocity_modifier
 	player.transform.basis = player.transform.basis.slerp(
 		target,
 		rotation_amount
