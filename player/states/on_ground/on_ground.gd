@@ -10,6 +10,9 @@ func handle_input(_event: InputEvent) -> void:
 		emit_signal("demands_transition_to", "jump")
 
 func physics_update(_delta: float) -> void:
+	if not player.is_on_floor():
+		emit_signal("demands_transition_to", "fall")
+		return
 	var input_dir = Input.get_vector("left", "right", "forwards", "backwards")
 
 	var direction = (

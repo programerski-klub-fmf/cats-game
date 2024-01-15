@@ -11,6 +11,8 @@ func update(_delta: float) -> void:
 	)
 	var _is_moving: bool = player.velocity.x != 0 or player.velocity.z != 0
 
+	if not player.is_on_floor():
+		emit_signal("demands_transition_to", "fall")
 	if _is_jump_input:
 		emit_signal("demands_transition_to", "jump")
 	elif _is_move_input or _is_moving:

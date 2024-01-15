@@ -1,11 +1,12 @@
-[gd_scene load_steps=10 format=3 uid="uid://43wunqncjbf3"]
+[gd_scene load_steps=11 format=3 uid="uid://43wunqncjbf3"]
 
 [ext_resource type="Script" path="res://player/player.gd" id="1_v2xxb"]
 [ext_resource type="Script" path="res://player/player_state_machine.gd" id="2_xdkyd"]
 [ext_resource type="Script" path="res://player/states/on_ground/idle.gd" id="3_ycye7"]
-[ext_resource type="Script" path="res://player/states/jump.gd" id="4_2rq8h"]
+[ext_resource type="Script" path="res://player/states/in_air/jump.gd" id="4_67ksm"]
 [ext_resource type="Script" path="res://player/states/on_ground/walk.gd" id="5_iqfve"]
 [ext_resource type="Script" path="res://player/states/on_ground/run.gd" id="6_laxlk"]
+[ext_resource type="Script" path="res://player/states/in_air/fall.gd" id="7_htx02"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_e2a1n"]
 albedo_color = Color(0.988235, 0.313726, 0, 1)
@@ -34,13 +35,16 @@ INITIAL_STATE = NodePath("Idle")
 script = ExtResource("3_ycye7")
 
 [node name="Jump" type="Node" parent="PlayerStateMachine"]
-script = ExtResource("4_2rq8h")
+script = ExtResource("4_67ksm")
 
 [node name="Walk" type="Node" parent="PlayerStateMachine"]
 script = ExtResource("5_iqfve")
 
 [node name="Run" type="Node" parent="PlayerStateMachine"]
 script = ExtResource("6_laxlk")
+
+[node name="Fall" type="Node" parent="PlayerStateMachine"]
+script = ExtResource("7_htx02")
 
 [node name="YawPivot" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, -1)

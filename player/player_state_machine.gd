@@ -7,6 +7,7 @@ func _ready():
 		"jump": $Jump,
 		"walk": $Walk,
 		"run": $Run,
+		"fall": $Fall,
 	}
 
 	super._ready()
