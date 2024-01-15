@@ -1,0 +1,21 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://d23x5privb0l"
+path="res://.godot/imported/ORIGAMI_Chat_Free.obj-9b2359b1e73cdb688d6363b5ba2a1a2d.mesh"
+
+[deps]
+
+files=["res://.godot/imported/ORIGAMI_Chat_Free.obj-9b2359b1e73cdb688d6363b5ba2a1a2d.mesh"]
+
+source_file="res://assets/meshes/ORIGAMI_Chat_Free.obj"
+dest_files=["res://.godot/imported/ORIGAMI_Chat_Free.obj-9b2359b1e73cdb688d6363b5ba2a1a2d.mesh", "res://.godot/imported/ORIGAMI_Chat_Free.obj-9b2359b1e73cdb688d6363b5ba2a1a2d.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true
