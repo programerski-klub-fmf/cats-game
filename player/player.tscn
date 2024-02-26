@@ -1,7 +1,7 @@
-[gd_scene load_steps=11 format=3 uid="uid://43wunqncjbf3"]
+[gd_scene load_steps=10 format=3 uid="uid://43wunqncjbf3"]
 
 [ext_resource type="Script" path="res://player/player.gd" id="1_v2xxb"]
-[ext_resource type="ArrayMesh" uid="uid://d23x5privb0l" path="res://assets/meshes/ORIGAMI_Chat_Free.obj" id="2_3biyc"]
+[ext_resource type="PackedScene" uid="uid://pqnn7olx56it" path="res://assets/meshes/cat.glb" id="2_urwwe"]
 [ext_resource type="Script" path="res://player/player_state_machine.gd" id="2_xdkyd"]
 [ext_resource type="Script" path="res://player/states/on_ground/idle.gd" id="3_ycye7"]
 [ext_resource type="Script" path="res://player/states/in_air/jump.gd" id="4_67ksm"]
@@ -9,19 +9,58 @@
 [ext_resource type="Script" path="res://player/states/on_ground/run.gd" id="6_laxlk"]
 [ext_resource type="Script" path="res://player/states/in_air/fall.gd" id="7_htx02"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_khnx5"]
-albedo_color = Color(1, 0.439216, 0, 1)
-
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_j0fku"]
 radius = 0.421008
 
 [node name="Player" type="CharacterBody3D"]
 script = ExtResource("1_v2xxb")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-transform = Transform3D(-0.03, -4.828e-23, -4.52987e-09, 0, 0.03, -3.19744e-16, 4.52987e-09, -3.19744e-16, -0.03, 0, 0.00107408, 0.114194)
-material_override = SubResource("StandardMaterial3D_khnx5")
-mesh = ExtResource("2_3biyc")
+[node name="cat" parent="." instance=ExtResource("2_urwwe")]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0, 0, 0)
+
+[node name="FrontLeftIK" type="SkeletonIK3D" parent="cat/kitty_0012/Skeleton3D" index="1"]
+process_priority = 1
+root_bone = &"front_shoulder.L"
+tip_bone = &"front_pointer.L"
+use_magnet = true
+magnet = Vector3(0, 10, 0)
+target_node = NodePath("../../IKTargetFL")
+
+[node name="FrontRightIK" type="SkeletonIK3D" parent="cat/kitty_0012/Skeleton3D" index="2"]
+process_priority = 1
+root_bone = &"front_shoulder.R"
+tip_bone = &"front_pointer.R"
+use_magnet = true
+magnet = Vector3(0, 10, 0)
+target_node = NodePath("../../IKTargetFR")
+
+[node name="RearLeftIK" type="SkeletonIK3D" parent="cat/kitty_0012/Skeleton3D" index="3"]
+process_priority = 1
+root_bone = &"shoulder.L"
+tip_bone = &"back_pointer.L"
+use_magnet = true
+magnet = Vector3(0, 10, 0)
+target_node = NodePath("../../IKTargetRL")
+
+[node name="RearRightIK" type="SkeletonIK3D" parent="cat/kitty_0012/Skeleton3D" index="4"]
+process_priority = 1
+root_bone = &"shoulder.R"
+tip_bone = &"back_pointer.R"
+use_magnet = true
+magnet = Vector3(0, 10, 0)
+target_node = NodePath("../../IKTargetRR")
+
+[node name="IKTargetFL" type="Marker3D" parent="cat/kitty_0012" index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0193957, 0.0194366, -0.0465527)
+
+[node name="IKTargetFR" type="Marker3D" parent="cat/kitty_0012" index="2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0234176, 0.0195013, -0.0465476)
+
+[node name="IKTargetRL" type="Marker3D" parent="cat/kitty_0012" index="3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0307736, 0.0118147, 0.0683695)
+
+[node name="IKTargetRR" type="Marker3D" parent="cat/kitty_0012" index="4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0315008, 0.0118146, 0.0678401)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(0.6, 0, 0, 0, -2.62268e-08, -0.6, 0, 0.6, -2.62268e-08, 0, 0.251838, 0)
@@ -56,3 +95,5 @@ transform = Transform3D(1, 0, 0, 0, 0.978148, 0.207912, 0, -0.207912, 0.978148, 
 spring_length = 5.0
 
 [node name="Camera3D" type="Camera3D" parent="YawPivot/PitchPivot/SpringArm3D"]
+
+[editable path="cat"]
