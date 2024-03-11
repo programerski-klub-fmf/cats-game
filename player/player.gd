@@ -7,7 +7,7 @@ extends CharacterBody3D
 @export var pitch_speed := 1.0
 
 @export var acceleration := 20.0
-@export var walk_speed := 5.0
+@export var walk_speed := 1.0
 @export var run_speed := 9.0
 @export var jump_velocity := 6.0
 @export var rotation_speed := 8.0
